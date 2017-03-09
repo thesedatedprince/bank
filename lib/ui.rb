@@ -7,10 +7,14 @@ class Ui
   end
 
   def withdraw(amount)
-    @account.subtract(amount)
+    @account.debit(amount)
   end
 
   def deposit(amount)
-    @account.add(amount)
+    @account.credit(amount)
+  end
+
+  def print_balance
+    @account.history
   end
 end

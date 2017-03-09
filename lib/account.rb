@@ -6,11 +6,12 @@ class Account
     @transactions = {}
   end
 
-  def subtract(amount)
+  def debit(amount)
     @balance -= amount
+    save(__method__.to_s, amount)
   end
 
-  def add(amount)
+  def credit(amount)
     @balance += amount
     save(__method__.to_s, amount)
   end
@@ -22,6 +23,15 @@ class Account
       @transactions[Time.now.strftime("%d/%m/%Y")] = []
       @transactions[Time.now.strftime("%d/%m/%Y")].push [type, amount]
     end
+  end
+
+  def history
+    input = print_processor
+    p "#{input.flatten.join(" ")} balance #{@balance}"
+  end
+
+  def print_processor
+    @transactions.to_a
   end
 
 end
