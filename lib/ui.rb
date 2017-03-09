@@ -9,4 +9,8 @@ class Ui
   def withdraw(amount)
     @account.subtract(amount)
   end
+
+  def deposit(amount)
+    @account.add(amount)
+  end
 end
