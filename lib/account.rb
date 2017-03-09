@@ -16,6 +16,12 @@ class Account
   end
 
   def save(type, amount)
-    @transactions[Time.now.strftime("%d/%m/%Y")] = [type, amount]
+    if @transactions.key?(Time.now.strftime("%d/%m/%Y").to_s)
+      @transactions[Time.now.strftime("%d/%m/%Y")].push [type, amount]
+    else
+      @transactions[Time.now.strftime("%d/%m/%Y")] = []
+      @transactions[Time.now.strftime("%d/%m/%Y")].push [type, amount]
+    end
   end
+
 end
